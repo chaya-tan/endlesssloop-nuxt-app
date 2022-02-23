@@ -16,7 +16,7 @@ router.get(path, (req: Request, res: Response) => {
         return;
     }
 
-    if(!process.env.twitterKeySecret) {
+    if(!process.env.TWITTER_API_KEY_SECRET) {
         res.status(400).send("Twitter Key Secret Not found");
         return;
     }
@@ -25,7 +25,7 @@ router.get(path, (req: Request, res: Response) => {
 
     try {
         res.status(200)
-            .send({response_token: twitterCRCTokenCalculator(crcToken, process.env.twitterKeySecret)})
+            .send({response_token: `sha256=${twitterCRCTokenCalculator(crcToken, process.env.TWITTER_API_KEY_SECRET)}`})
     } catch(error) {
         res.status(400).send("CRC Calculation Failed");
     }
