@@ -1,9 +1,39 @@
-import { Router, Request, Response } from 'express'
+import { Router, Request, Response, RequestHandler } from 'express'
+import crypto from 'crypto'
+
 const router = Router();
 
-router.post("/twitter/webhook", (req: Request, res: Response) => {
+const path = "/twitter/webhook"
+
+const twitterCRCTokenCalculator  = (crcToken: string, twitterConsumerSecret: string): string => {
+    return crypto.createHmac('sha256',twitterConsumerSecret).update(crcToken).digest('base64')
+}
+
+// Twitter Challenge Response Check
+router.get(path, (req: Request, res: Response) => {
+    if(!req.query.crc_token) {
+        res.status(400).send("CRC Token not found");
+        return;
+    }
+
+    if(!process.env.twitterKeySecret) {
+        res.status(400).send("Twitter Key Secret Not found");
+        return;
+    }
+
+    const crcToken =  req.query.crc_token as string
+
+    try {
+        res.status(200)
+            .send({response_token: twitterCRCTokenCalculator(crcToken, process.env.twitterKeySecret)})
+    } catch(error) {
+        res.status(400).send("CRC Calculation Failed");
+    }
+})
+
+router.post(path, (req: Request, res: Response) => {
     console.log("request: ", req);
-    res.send({ status: 200 })
+    res.status(200)
 })
 
 export default router

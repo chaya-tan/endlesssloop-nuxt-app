@@ -45,5 +45,16 @@ export default {
 
   serverMiddleware: {
     '/api': '~/api'
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+  },
+
+  privateRuntimeConfig: {
+    twitterAppId: process.env.TWITTER_APP_ID,
+    twitterAPIKey: process.env.TWITTER_API_KEY,
+    twitterKeySecret: process.env.TWITTER_API_KEY_SECRET,
+    twitterBearerToken: process.env.TWITTER_BEARER_TOKEN,
   }
 }
