@@ -25,9 +25,4 @@ router.get(path, (req: Request, res: Response) => {
         })
 })
 
-router.post(path, (req: Request, res: Response) => {
-    console.log("request: ", req);
-    res.status(200)
-})
-
 export default router
