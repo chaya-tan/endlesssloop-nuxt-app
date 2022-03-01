@@ -56,5 +56,9 @@ export default {
     twitterAPIKey: process.env.TWITTER_API_KEY,
     twitterKeySecret: process.env.TWITTER_API_KEY_SECRET,
     twitterBearerToken: process.env.TWITTER_BEARER_TOKEN,
+  },
+
+  axios: {
+    baseURL: '/'
   }
 }
