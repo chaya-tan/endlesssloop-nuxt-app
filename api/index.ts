@@ -1,10 +1,12 @@
 import express from 'express'
 import TwitterWebhook from './twitter/webhook'
+import TwitterRequestToken from './twitter/auth/requesttoken'
 import Telegram from './telegram'
 
 const app = express();
 
 app.use(TwitterWebhook)
+app.use(TwitterRequestToken)
 app.use(Telegram)
 
 if (require.main === module) {
