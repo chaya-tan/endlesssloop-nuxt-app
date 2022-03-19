@@ -6,7 +6,7 @@ const path = "/line/webhook"
 
 router.post(path, (req: Request, res: Response) => {
     console.log("request: ", req);
-    res.status(200)
+    res.status(200).send({success: true})
 })
 
 export default router
