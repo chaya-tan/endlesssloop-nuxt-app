@@ -28,7 +28,7 @@ router.get(path, (req: Request, res: Response) => {
             secret: process.env.TWITTER_API_KEY_SECRET,
             token: process.env.TWITTER_ACCESS_TOKEN,
             tokenSecret: process.env.TWITTER_ACCEDD_TOKEN_SECRET,
-            callback: 'https://endlesssloop-nuxt-app.vercel.app/api/twitter/auth/callback',
+            callback: 'https://endlesssloop-nuxt-app.vercel.app/api/twitter/webhook',
         };
         addOAuthInterceptor(axiosClient, options);
         

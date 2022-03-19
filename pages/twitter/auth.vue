@@ -22,20 +22,22 @@ export default {
     }
   },
   methods: {
-       async requestToken () {
+      requestToken () {
         axios
-          .get("/api/twitter/auth/requesttoken")
+          .get<{oauth_token: string; oauth_token_secret: string}>("/api/twitter/auth/requesttoken")
           .then(res => {
             const oauthData = res.data
-            if(oauthData.oauth_token && oauthData.oauth_token_secret) {
-              this.oAuthToken = oauthData.oauth_token
-              this.oAuthTokenSecret = oauthData.oauth_token_secret
-            }
+            console.log("oauthData",oauthData)
+            console.log(this)
+            // if(oauthData.oauth_token && oauthData.oauth_token_secret) {
+            //   this.oAuthToken = oauthData.oauth_token
+            //   this.oAuthTokenSecret = oauthData.oauth_token_secret
+            // }
           })
           .catch(error => console.error(error))
       },
       redirect() {
-        window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${this.oAuthToken}`
+        // window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${this.oAuthToken}`
       }
   }
 }
