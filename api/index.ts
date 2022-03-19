@@ -4,6 +4,7 @@ import TwitterRequestToken from './twitter/auth/requesttoken'
 import TwitterAuthCallback from './twitter/auth/callback'
 import TwitterUserShow from './twitter/user/show'
 import Telegram from './telegram'
+import LineWebhook from './line/webhook'
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(TwitterWebhook)
 app.use(TwitterRequestToken)
 app.use(TwitterAuthCallback)
 app.use(TwitterUserShow)
+app.use(LineWebhook)
 app.use(Telegram)
 
 if (require.main === module) {
