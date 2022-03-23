@@ -7,7 +7,8 @@ const path = "/line/webhook"
 const lineChannelSecret = process.env.LINE_CHANNEL_SECRET
 
 router.post(path, (req: Request, res: Response) => {
-    console.log("request: ", req);
+    console.log("Req Body: ", req.body);
+    console.log("Req Header: ", req.header);
     console.log("lineChannelSecret", lineChannelSecret)
     res.status(200).send({success: true})
 })
